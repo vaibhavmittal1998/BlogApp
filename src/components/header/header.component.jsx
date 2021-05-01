@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { signInWithGoogle } from '../../firebase/firbase.utils';
 import { auth } from '../../firebase/firbase.utils';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 import './header.styles.scss';
+import { connect } from 'react-redux';
 
 const Header = ({currentUser}) => (
   <div className='header'>
@@ -16,20 +18,24 @@ const Header = ({currentUser}) => (
       <Link className='option' to='/category'>
         CATEGORY
       </Link>
-      <Link className='option' to='/category'>
+      {/* <Link className='option' to='/category'>
         CONTACT
-      </Link>
+      </Link> */}
       {
         currentUser ? 
         <div className='option' onClick={() => auth.signOut()}>
           SIGNOUT
         </div> :
-        <Link className='option' to='signin'>
-          SIGNIN
-        </Link>
+        <div className='option' onClick={() => signInWithGoogle()}>
+        SIGNIN
+      </div>
       }
     </div>
   </div>
 );
+ 
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser,
+})
 
-export default Header;
+export default connect(mapStateToProps)(Header);
