@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom';
 import { signInWithGoogle } from '../../firebase/firbase.utils';
 import { auth } from '../../firebase/firbase.utils';
 import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 import './header.styles.scss';
 import { connect } from 'react-redux';
 
-const Header = ({currentUser}) => (
+const Header = ({currentUser, showCartDropdown}) => (
   <div className='header'>
     <Link className='logo-container' to='/'>
       <Logo className='logo' />
@@ -31,15 +32,19 @@ const Header = ({currentUser}) => (
         SIGNIN
       </div>
       }
-      <Link className='option' to='/category'>
-        <CartIcon/>
-      </Link>
+        <CartIcon />
     </div>
+    {
+      showCartDropdown ?
+      <CartDropdown /> : 
+      null
+    }
   </div>
 );
  
 const mapStateToProps = state => ({
   currentUser: state.user.currentUser,
-})
+  showCartDropdown: state.cartIcon.showCartDropdown
+});
 
 export default connect(mapStateToProps)(Header);
