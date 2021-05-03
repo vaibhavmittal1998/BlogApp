@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { signInWithGoogle } from '../../firebase/firbase.utils';
 import { auth } from '../../firebase/firbase.utils';
+import CartIcon from "../cart-icon/cart-icon.component";
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
@@ -30,6 +31,9 @@ const Header = ({currentUser}) => (
         SIGNIN
       </div>
       }
+      <Link className='option' to='/category'>
+        <CartIcon/>
+      </Link>
     </div>
   </div>
 );
