@@ -44,7 +44,7 @@ const Header = ({currentUser, showCartDropdown}) => (
  
 const mapStateToProps = state => ({
   currentUser: state.user.currentUser,
-  showCartDropdown: state.cartIcon.showCartDropdown
+  showCartDropdown: state.cart.showCartDropdown
 });
 
 export default connect(mapStateToProps)(Header);

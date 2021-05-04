@@ -1,0 +1,5 @@
+export const cartActionsTypes = {
+    TOOGLE_CART_DROPDOWN: 'TOOGLE_CART_DROPDOWN',
+    ADD_CART_ITEM: 'ADD_CART_ITEM',
+    REMOVE_CART_ITEM: 'REMOVE_CART_ITEM'
+};
