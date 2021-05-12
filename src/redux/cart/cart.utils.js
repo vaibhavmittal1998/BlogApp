@@ -13,16 +13,36 @@ export const addItemToCart = (cartItems, itemToAdd) => {
     return [...cartItems, {...itemToAdd, quantity: 1}];
 }
 
+// export const removeItemToCart = (cartItems, itemToRemove) => {
+//     const exisitingItem = cartItems.findIndex(item => item.id === itemToRemove.id);
+
+//     if(exisitingItem > -1){
+//         if(cartItems[exisitingItem].quantity > 1){
+//             cartItems[exisitingItem].quantity = cartItems[exisitingItem].quantity - 1;
+//         }
+//         else{
+//             cartItems.splice(exisitingItem,1);
+//         }
+//     }
+
+//     return cartItems;
+// }
+
 export const removeItemToCart = (cartItems, itemToRemove) => {
-    const exisitingItem = cartItems.indexOf(item => item.id === itemToRemove.id);
+    const exisitingItem = cartItems.find(item => item.id === itemToRemove.id);
+
+    if(exisitingItem.quantity === 1){
+        return cartItems.filter(item => item.id !== exisitingItem.id);
+    }
+
+    return cartItems.map(item => item.id === exisitingItem.id ? {...item, quantity: item.quantity -1 } : item);
+}
+
+export const clearItemToCart = (cartItems, itemToClear) => {
+    const exisitingItem = cartItems.find(item => item.id === itemToClear.id);
 
     if(exisitingItem){
-        if(cartItems[exisitingItem].quantity > 1){
-            cartItems[exisitingItem].quantity = cartItems[exisitingItem].quantity - 1;
-        }
-        else{
-            delete cartItems[exisitingItem];
-        }
+        return cartItems.filter(item => item.id !== exisitingItem.id);
     }
 
     return cartItems;
