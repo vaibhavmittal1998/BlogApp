@@ -2,9 +2,6 @@ import React from 'react';
 import { addCartItem, removeCartItem, clearCartItem } from '../../redux/cart/cart.actions';
 
 import { connect } from 'react-redux';
-
-import CustomButton from "../custom-button/custom-button.component";
-
 import './checkout-item.styles.scss';
 
 const CheckoutItem = ({cartItem, addItemQuantity, subtractItemQuantity, clearItemQuantity}) => {
